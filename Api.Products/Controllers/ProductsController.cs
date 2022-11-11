@@ -1,5 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Api.Products.Models;
+using Api.Products.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Api.Products.Controllers;
 
@@ -7,10 +12,17 @@ namespace Api.Products.Controllers;
 [ApiController]
 public class ProductsController : ControllerBase
 {
-    [HttpGet]
-    public IEnumerable<string> Get()
+    private readonly IProductService _productService;
+    private readonly ILogger<ProductsController> _logger;
+    public ProductsController(IProductService productService, ILogger<ProductsController> logger)
     {
-        return new string[] { "value1", "value2" };
+        _productService = productService;
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    }
+    [HttpGet]
+    public async Task<IEnumerable<ProductModel>> Get()
+    {
+        return await _productService.GetProducts();
     }
 
     // GET api/<ProductsController>/5
