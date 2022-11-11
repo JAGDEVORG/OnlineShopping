@@ -12,18 +12,18 @@ namespace Api.Users.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly IAuthenticationService _authenticationService;
         private readonly ILogger<AuthenticationController> _logger;
-        public AuthenticationController(IUserService userService, ILogger<AuthenticationController> logger)
+        public AuthenticationController(IAuthenticationService authenticationService, ILogger<AuthenticationController> logger)
         {
-            _userService = userService;
+            _authenticationService = authenticationService;
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         [HttpPost]
         public async Task<ResponseModel> Post([FromBody] LoginModel loginModel)
         {
-            return await _userService.ValidateUser(loginModel);
+            return await _authenticationService.ValidateUser(loginModel);
         }
     }
 }
