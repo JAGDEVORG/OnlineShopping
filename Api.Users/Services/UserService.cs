@@ -14,19 +14,19 @@ namespace Api.Users.Services
             List<UserModel> users = new List<UserModel>();
             var u1 = new UserModel
             {
-                Id = 1,
+                Id = 1001,
                 UserName = "Jagdev",
                 Email = "jagdev@gmail.com"
             };
             var u2 = new UserModel
             {
-                Id = 2,
+                Id = 1002,
                 UserName = "Rudransh",
                 Email = "rudransh@gmail.com"
             };
             var u3 = new UserModel
             {
-                Id = 3,
+                Id = 1003,
                 UserName = "Ankita",
                 Email = "Ankita@gmail.com"
             };
